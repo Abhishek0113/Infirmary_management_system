@@ -7,32 +7,50 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
         }
         .container {
-            width: 300px;
-            margin: 100px auto;
-            padding: 20px;
+            width: 400px;
+            margin: 50px auto;
             background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         h2 {
             text-align: center;
+            color: #333;
         }
-        input[type="text"], input[type="password"], input[type="submit"] {
+        #loginForm {
+            margin-top: 20px;
+        }
+        input[type="text"],
+        input[type="password"] {
             width: 100%;
-            margin-bottom: 10px;
             padding: 10px;
+            margin: 10px 0;
             border: 1px solid #ccc;
-            border-radius: 3px;
+            border-radius: 4px;
         }
         input[type="submit"] {
-            background-color: #007bff;
+            width: 100%;
+            padding: 10px;
+            background-color: #4caf50;
             color: #fff;
+            border: none;
+            border-radius: 4px;
             cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .error-message {
+            color: #f00;
+            text-align: center;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -44,16 +62,26 @@
             <input type="password" id="password" name="password" placeholder="Password" required>
             <input type="submit" value="Login">
         </form>
+        <div id="errorMessage" class="error-message"></div>
     </div>
     <script>
-        // You can add JavaScript for validation or other functionalities here
         document.getElementById("loginForm").addEventListener("submit", function(event) {
             event.preventDefault(); // Prevent default form submission
-            // You can add validation or form submission logic here
-            // For simplicity, let's just log the username and password for now
+            // Get the username and password entered by the user
             var username = document.getElementById("username").value;
             var password = document.getElementById("password").value;
-            console.log("Username: " + username + ", Password: " + password);
+
+            // Perform validation
+            if (username.trim() === '' || password.trim() === '') {
+                document.getElementById("errorMessage").innerText = "Please enter both username and password.";
+            } else {
+                // For demonstration, you can log the credentials to console
+                console.log("Username: " + username + ", Password: " + password);
+
+                // Perform any additional actions (e.g., submit the form to server)
+                // For now, let's assume successful login and redirect to dashboard.html
+                window.location.href = "dashboard.html";
+            }
         });
     </script>
 </body>
